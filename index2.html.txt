@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مختبر الأعمدة التوأم - صالح</title>
+    <style>
+        /* الخلفية السماوية الأصلية من لوحة صالح */
+        body {
+            background-color: #87ceeb;
+            color: #111111;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #331166;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        p.intro {
+            text-align: center;
+            max-width: 700px;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            width: 100%;
+            max-width: 1100px;
+            padding: 20px;
+        }
+
+        .art-card {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .art-card h3 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            color: #331166;
+            border-bottom: 3px solid #0033aa;
+            padding-bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* حاوية الأعمدة التوأم */
+        .twin-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 60px;
+            width: 100%;
+            height: 350px;
+            padding: 20px;
+        }
+
+        /* الهيكل الأساسي للعمود الأيسر (العريض والقصير نسبياً) */
+        .left-column {
+            width: 160px;
+            height: 280px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* الهيكل الأساسي للعمود الأيمن (الطويل والنحيف نسبياً) */
+        .right-column {
+            width: 140px;
+            height: 340px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* طبقات العمود الأيسر (الألوان الأصلية) */
+        .l-layer-1 { width: 100%; height: 100%; background: #800000; border: 4px solid #0033aa; display: flex; justify-content: center; align-items: center; box-sizing: border-box; }
+        .l-layer-2 { width: 85%; height: 90%; background: #000000; display: flex; justify-content: center; align-items: center; }
+        .l-layer-3 { width: 90%; height: 92%; background: #32cd32; display: flex; justify-content: center; align-items: center; }
+        .l-layer-4 { width: 80%; height: 88%; background: #afeeee; display: flex; justify-content: center; align-items: center; }
+        .l-layer-5 { width: 40%; height: 75%; background: #8b4513; } /* المركز البني */
+
+        /* طبقات العمود الأيمن (الألوان الأصلية) */
+        .r-layer-1 { width: 100%; height: 100%; background: #0000ff; display: flex; justify-content: center; align-items: center; }
+        .r-layer-2 { width: 75%; height: 92%; background: #008080; display: flex; justify-content: center; align-items: center; }
+        .r-layer-3 { width: 80%; height: 92%; background: #32cd32; display: flex; justify-content: center; align-items: center; }
+        .r-layer-4 { width: 35%; height: 75%; background: #ffc0cb; } /* المركز الوردي */
+
+        /* النمط الأول: المنظور ثنائي الأبعاد (الرسم الأصلي) */
+        .flat-style div { box-shadow: none; }
+
+        /* النمط الثاني: نفق العمق اللانهائي (جوا تفوت) */
+        .depth-style div {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.4), inset -2px -2px 6px rgba(255,255,255,0.1);
+        }
+
+        /* النمط الثالث: الأبراج المدرجة صاعدة للأعلى (3D) */
+        .perspective-3d {
+            perspective: 1000px;
+        }
+        .perspective-3d .left-column, .perspective-3d .right-column {
+            transform: rotateX(20deg);
+        }
+        .perspective-3d div {
+            box-shadow: 0px 5px 10px rgba(0,0,0,0.25);
+            transition: transform 0.3s;
+        }
+        /* تدرج البروز للأعلى للطبقات المتداخلة */
+        .perspective-3d .left-column div, .perspective-3d .right-column div { transform: translateZ(10px); }
+
+        .art-card p.desc {
+            font-size: 1rem;
+            margin-top: 25px;
+            margin-bottom: 0;
+            color: #333;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>مختبر الأعمدة التوأم المتناقضة</h1>
+    <p class="intro">تأليف واختراع أصلي بقلم: <strong>صالح</strong>. يوضح هذا النموذج البرمجي التباين اللوني والهندسي بين عمودين مختلفين في الطول والتتابع المربعي.</p>
+
+    <div class="gallery">
+
+        <div class="art-card">
+            <h3>1. النمط الهندسي المسطح (الرؤية الأصلية)</h3>
+            <div class="twin-container flat-style">
+                <div class="left-column">
+                    <div class="l-layer-1"><div class="l-layer-2"><div class="l-layer-3"><div class="l-layer-4"><div class="l-layer-5"></div></div></div></div></div>
+                </div>
+                <div class="right-column">
+                    <div class="r-layer-1"><div class="r-layer-2"><div class="r-layer-3"><div class="r-layer-4"></div></div></div></div>
+                </div>
+            </div>
+            <p class="desc">تطابق تام مع رسمة صالح؛ يظهر التباين بين الطول والعرض، والتضاد اللوني الذكي بين العمودين.</p>
+        </div>
+
+        <div class="art-card">
+            <h3>2. أنفاق العمق المتوازية (جوا تفوت)</h3>
+            <div class="twin-container depth-style">
+                <div class="left-column">
+                    <div class="l-layer-1"><div class="l-layer-2"><div class="l-layer-3"><div class="l-layer-4"><div class="l-layer-5"></div></div></div></div></div>
+                </div>
+                <div class="right-column">
+                    <div class="r-layer-1"><div class="r-layer-2"><div class="r-layer-3"><div class="r-layer-4"></div></div></div></div>
+                </div>
+            </div>
+            <p class="desc">تم إدخال الظلال الداخلية لتبدو الأعمدة وكأنها نفقان رأسيان يذهبان بالعين إلى عمق لا نهائي متباين.</p>
+        </div>
+
+        <div class="art-card">
+            <h3>3. المنصات المدرجة ثلاثية الأبعاد (صاعد لأعلى)</h3>
+            <div class="twin-container perspective-3d">
+                <div class="left-column">
+                    <div class="l-layer-1"><div class="l-layer-2"><div class="l-layer-3"><div class="l-layer-4"><div class="l-layer-5"></div></div></div></div></div>
+                </div>
+                <div class="right-column">
+                    <div class="r-layer-1"><div class="r-layer-2"><div class="r-layer-3"><div class="r-layer-4"></div></div></div></div>
+                </div>
+            </div>
+            <p class="desc">تطبيق البعد الثالث؛ حيث ترتفع المربعات المستطيلة كطبقات معمارية بارزة تخرج من الشاشة نحو الناظر.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
